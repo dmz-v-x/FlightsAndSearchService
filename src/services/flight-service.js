@@ -36,17 +36,29 @@ class FlightService {
       throw { error };
     }
   }
+
+  async getFlight(flightId) {
+    try {
+      const flight = await this.flightRepository.getFlight(flightId);
+      return flight;
+    } catch (error) {
+      console.log("Something went wrong at service layer");
+      throw { error };
+    }
+  }
+
+  async updateFlight(flightId, data) {
+    try {
+      const response = await this.flightRepository.updateFlights(
+        flightId,
+        data
+      );
+      return response;
+    } catch (error) {
+      console.log("Something went wrong at service layer");
+      throw { error };
+    }
+  }
 }
 
 module.exports = FlightService;
-
-/**
- * flightNumber,
- * airplaneId,
- * departureAirportId,
- * arrivalAirportId,
- * arrivalTime,
- * departureTime,
- * price,
- * totalSeats --> fetch from airplane.
- */
